@@ -31,12 +31,13 @@ glob.requestData = function() {
     source = $("#track-content").html();
     template = Handlebars.compile(source);
     return $(d['subsonic-response']['indexes']['index']).each(function() {
+      console.log(this);
       return $(this.artist).each(function() {
         var context, html;
         console.log(this.name);
         context = {
           title: this.name,
-          link: "track"
+          artistid: this.id
         };
         html = template(context);
         if (this.name !== void 0) return $('.tracks ul').append(html);
@@ -45,7 +46,10 @@ glob.requestData = function() {
   });
 };
 
-$('body').on('click', 'button', function() {
+glob.requestData();
+
+$('body').on('click', '#organize', function() {
+  $('.tracks ul').empty();
   return glob.requestData();
 });
 })
@@ -60,7 +64,7 @@ MYAPP.run = (function() {
 	// create the Kendo UI Mobile application
     MYAPP.app = new kendo.mobile.Application(document.body, { transition: "slide" });
     console.log('run')
-    MYAPP.subsonic()
+    //MYAPP.subsonic()
 });
 
 // this is called when the intial view shows. it prevents the flash

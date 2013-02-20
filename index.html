@@ -35,6 +35,7 @@
 				<div data-role="tabstrip">
 					<a data-icon="home" href="#home">Home</a>
 					<a data-icon="settings" href="#settings">Settings</a>
+					<a id="organize" data-icon="organize" href="#organize">Songs</a>
 				</div>
 			</div>
 		</div>
@@ -42,7 +43,7 @@
 		<!-- These are the "views" that are displayed between the header and the footer
 			 of the layout above. They are specfied as contents of the layout via the
 			 data-layout="main-layout" where "main-layout" is the data-id of the desired
-			 layout -->
+			 layout --><li><span class="km-icon km-organize"></span><br>organize</li>
 
 		<div data-role="view" data-show="MYAPP.show" data-layout="main-layout" id="home" data-title="Home">
 			<p>Home</p>
@@ -53,11 +54,14 @@
       <button id=fetch>fetch data</button>
 		</div>
 
+		<div data-role="view" data-layout="main-layout" id="organize" data-title="Organize">
+			<p>Organize</p>
+		</div>
 		<div data-role="view" data-layout="main-layout" id="settings" data-title="Settings">
 			<p>Settings</p>
 		</div>
     <script id="track-content" type="text/x-handlebars-template">
-<li><a href={{link}} >{{title}}</a></li>
+      <li><a data-artistid={{artistid}} href="#artistid{{artistid}}" >{{title}}</a></li>
     </script>
 
 	</body>
