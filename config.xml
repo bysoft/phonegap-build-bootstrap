@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <widget xmlns		= "http://www.w3.org/ns/widgets"
 	xmlns:gap	= "http://phonegap.com/ns/1.0"
-	id		= "com.you.www"
+	id		= "com.brianyang.www"
 	version 	= "1.0.0">
 
-	<name>Your Mind Blowing App</name>
+	<name>dj.BrianYang.com</name>
 
 	<description>
-		A brilliant mobile application written by you and now available on every platform thanks to Kendo UI Mobile and PhoneGap Build.
+    Built to order songs
 	</description>
 
-	<author href="build.phonegap.com"
-		email="">
-		Mr. Mobile Madness
+	<author href="brianyang.com"
+		email="mail@brianyang.com">
+	  dj Brian Yang
 	</author>
 
 	<icon src="icon.png" gap:role="default" />
