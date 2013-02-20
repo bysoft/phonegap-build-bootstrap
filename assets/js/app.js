@@ -52,7 +52,7 @@ MYAPP.events = (function(){
 MYAPP.run = (function() {
 	// create the Kendo UI Mobile application
     MYAPP.app = new kendo.mobile.Application(document.body, { transition: "slide" });
-    MYAPP.subsonic()
+    //MYAPP.subsonic()
     console.log('run')
 });
 
