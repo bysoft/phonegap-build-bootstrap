@@ -3,9 +3,9 @@
 var MYAPP = MYAPP || {};
 
 MYAPP.subsonic = (function(){
-var baseUrl, glob, param, req;
+var baseUrl, param;
 
-glob = {};
+window.glob = {};
 
 baseUrl = 'http://by.subsonic.org/rest/';
 
@@ -19,28 +19,35 @@ glob.url = baseUrl + glob.queryMethod + param;
 
 console.log(glob.url);
 
-req = $.ajax;
-
-({
-  url: glob.url,
-  dataType: 'jsonp'
-});
-
-req.done(function(d) {
-  var context, html, source, template;
-  source = $("#track-content").html();
-  template = Handlebars.compile(source);
-  $(d['subsonic-response']['indexes']['index']).each(function() {
-    return console.log(($('this').artist));
+glob.requestData = function() {
+  var req;
+  req = $.ajax({
+    url: glob.url,
+    dataType: 'jsonp'
   });
-  context = {
-    title: this.artist.name,
-    link: "track"
-  };
-  html = template(context);
-  if (this.artist.name !== void 0) return $('.tracks ul').append(html);
-});
+  return req.done(function(d) {
+    var source, template;
+    console.log('done');
+    source = $("#track-content").html();
+    template = Handlebars.compile(source);
+    return $(d['subsonic-response']['indexes']['index']).each(function() {
+      return $(this.artist).each(function() {
+        var context, html;
+        console.log(this.name);
+        context = {
+          title: this.name,
+          link: "track"
+        };
+        html = template(context);
+        if (this.name !== void 0) return $('.tracks ul').append(html);
+      });
+    });
+  });
+};
 
+$('body').on('click', 'button', function() {
+  return glob.requestData();
+});
 })
 
 MYAPP.events = (function(){
@@ -52,8 +59,8 @@ MYAPP.events = (function(){
 MYAPP.run = (function() {
 	// create the Kendo UI Mobile application
     MYAPP.app = new kendo.mobile.Application(document.body, { transition: "slide" });
-    //MYAPP.subsonic()
     console.log('run')
+    MYAPP.subsonic()
 });
 
 // this is called when the intial view shows. it prevents the flash
